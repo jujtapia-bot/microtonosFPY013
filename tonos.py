@@ -34,7 +34,7 @@ while ejecutando:
                     #for i in range(1, cantidad + 1):
                     #    print(f"Microtono {i} activado...")
                     #    winsound.Beep(440, 300)
-                    #    time.sleep(0.2)
+                    #    time.sleep(0.5)
                     cancion = [
                         (311,250), (311,250),(311,500),
                         (311,250), (311,250),(311,500),
@@ -46,7 +46,7 @@ while ejecutando:
                         (277,500),(429,500)
                     ]
                     for i in range(len(cancion)):
-                        frecuencia = cancion[i][0]
+                        frecuencia = float(261.63*(2**cancion[i][0]))
                         duracion = cancion[i][1]
                         winsound.Beep(frecuencia, duracion)
                         time.sleep(0.05)
