@@ -5,36 +5,36 @@ print("Sintetizador de microtonos")
 maximo_microtonos = 50
 microtonos_libres = 50
 microtonos_activos = 0
-ejecutando = True
+ejecutando  = True
 
 while ejecutando:
-    print("\n === Panel de microtonos ===")
+    print("\n === Paner de microtonos ===")
     print("1-. Ver cuantos microtonos quedan libres")
     print("2-. Activar microtonos")
     print("3-. Devolver los microtonos")
-    print("4-. Monitorear el estado actual")
+    print("4-. Monitorear el estado actual de los microtonos")
     print("5-. Salir")
+    opcion = float(input("Elije una opción: "))
     
-    try:
-        opcion = int(input("Elije una opción: "))
-        
-        if opcion == 1:
-            print(f"\n[INFO] Tienes {microtonos_libres} microtonos disponibles.")
-            
-        elif opcion == 2:
-            if microtonos_libres == 0:
-                print("No tienes más microtonos disponibles.")
-            else:
-                cantidad = int(input("¿Cuántos microtonos quiere usar?: "))
+    if opcion == 1:
+        print(f"\n[INFO] Tienes {microtonos_libres} microtonos disponibles para usar")
+    elif opcion == 2:
+        if microtonos_libres == 0:
+            print("No tienes más microtonos disponibles")
+        else:
+            try:
+                cantidad = int(input("¿Cuántos microtonos quiere usar?: \n"))
                 if cantidad <= 0:
-                    print("Error! Debes activar al menos 1.")
+                    print("Error! Tienes que activar a lo menos 1 microtono")
                 elif cantidad > microtonos_libres:
-                    print(f"No hay suficientes. Máximo: {microtonos_libres}")
+                    print(f"No hay tantos microtonos, máximo disponible {microtonos_libres}")
                 else:
                     microtonos_libres -= cantidad
                     microtonos_activos += cantidad
-                    print(f"Activando {cantidad} microtonos...")
-                    
+                    #for i in range(1, cantidad + 1):
+                    #    print(f"Microtono {i} activado...")
+                    #    winsound.Beep(440, 300)
+                    #    time.sleep(0.2)
                     cancion = [
                         (311,250), (311,250),(311,500),
                         (311,250), (311,250),(311,500),
@@ -45,28 +45,14 @@ while ejecutando:
                         (311,250),(293,250),(293,250),(311,255),
                         (277,500),(429,500)
                     ]
-                    for freq, dur in cancion:
-                        winsound.Beep(freq, dur)
+                    for i in range(len(cancion)):
+                        frecuencia = cancion[i][0]
+                        duracion = cancion[i][1]
+                        winsound.Beep(frecuencia, duracion)
                         time.sleep(0.05)
-                        
-        elif opcion == 3:
-            microtonos_libres = maximo_microtonos
-            microtonos_activos = 0
-            print("\n[OK] Todos los microtonos han sido devueltos.")
-            
-        elif opcion == 4:
-            print(f"\n--- ESTADO ---")
-            print(f"Activos: {microtonos_activos}")
-            print(f"Libres:  {microtonos_libres}")
-            
-        elif opcion == 5:
-            print("Saliendo del sintetizador...")
-            ejecutando = False
-            
-        else:
-            print("Opción no válida. Intenta del 1 al 5.")
-            
-    except ValueError:
-        print("Error: Por favor, introduce un número válido.")
+            except ValueError:
+                print("Error")
+    else:
+        print("Error")
 
        
