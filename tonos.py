@@ -8,7 +8,7 @@ microtonos_activos = 0
 ejecutando  = True
 
 while ejecutando:
-    print("\n === Paner de microtonos ===")
+    print("Panel")
     print("1-. Ver cuantos microtonos quedan libres")
     print("2-. Activar microtonos")
     print("3-. Devolver los microtonos")
